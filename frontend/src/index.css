@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+:root {
+	--bg-page: #f3f7fb;
+	--bg-surface: #ffffff;
+	--text-primary: #0f172a;
+	--text-secondary: #64748b;
+	--brand: #0f766e;
+	--brand-soft: #ccfbf1;
+	--border: #e2e8f0;
+	--sidebar-bg: #0b1f3a;
+	--sidebar-active: #0f766e;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: "Plus Jakarta Sans", sans-serif;
+	color: var(--text-primary);
+	background: radial-gradient(circle at top right, #dff8f6 0%, #f3f7fb 45%);
+}
+
+#root {
+	min-height: 100vh;
+}
+
+.app-shell {
+	min-height: 100vh;
+	background: transparent;
+}
+
+.app-main {
+	flex: 1;
+	margin-left: 16rem;
+	min-height: 100vh;
+	padding: 1.25rem;
+}
+
+.app-top-gap {
+	margin-top: 1rem;
+}
+
+.app-card {
+	background: var(--bg-surface);
+	border: 1px solid var(--border);
+	border-radius: 14px;
+	box-shadow: 0 8px 24px rgba(2, 6, 23, 0.06);
+}
+
+.app-page-header {
+	margin-bottom: 1rem;
+}
+
+.app-page-eyebrow {
+	color: var(--text-secondary);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+
+.app-page-title {
+	margin-top: 0.25rem;
+	font-size: 1.75rem;
+	line-height: 1.2;
+	font-weight: 800;
+}
+
+.app-input,
+.app-select,
+.app-textarea {
+	width: 100%;
+	border: 1px solid #cbd5e1;
+	border-radius: 10px;
+	padding: 0.62rem 0.8rem;
+	font-size: 0.92rem;
+	color: #1e293b;
+	background: #fff;
+	outline: none;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.app-input:focus,
+.app-select:focus,
+.app-textarea:focus {
+	border-color: #14b8a6;
+	box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+}
+
+.app-label {
+	display: block;
+	margin-bottom: 0.35rem;
+	font-size: 0.83rem;
+	font-weight: 600;
+	color: #334155;
+}
+
+.app-btn-primary {
+	background: linear-gradient(90deg, #0f766e 0%, #0d9488 100%);
+	color: #fff;
+	border: none;
+	border-radius: 10px;
+	font-weight: 700;
+	padding: 0.62rem 1rem;
+	cursor: pointer;
+	transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.app-btn-primary:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 8px 18px rgba(13, 148, 136, 0.22);
+}
+
+.app-btn-secondary {
+	background: #f1f5f9;
+	color: #0f172a;
+	border: 1px solid #cbd5e1;
+	border-radius: 10px;
+	font-weight: 700;
+	padding: 0.62rem 1rem;
+}
+
+@media (max-width: 1024px) {
+	.app-main {
+		margin-left: 0;
+		padding: 0.75rem;
+	}
+}
