@@ -4,6 +4,9 @@ import { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
 
+// Deployed backend URL
+const API_URL = 'https://ems-backend-brown.vercel.app';
+
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -12,24 +15,30 @@ const AuthProvider = ({ children }) => {
         const verifyUser = async () => {
             try {
                 const token = localStorage.getItem('token');
+
                 if (token) {
-                    const response = await axios.get('http://localhost:5000/api/auth/verify', {
-                        headers: {
-                            authorization: `Bearer ${token}`,
-                        },
-                    });
+                    const response = await axios.get(
+                        `${API_URL}/api/auth/verify`,
+                        {
+                            headers: {
+                                authorization: `Bearer ${token}`,
+                            },
+                        }
+                    );
 
                     if (response.data.success) {
                         setUser(response.data.user);
                     } else {
                         setUser(null);
+                        localStorage.removeItem('token');
                     }
                 } else {
                     setUser(null);
                 }
             } catch (error) {
-                console.log(error);
+                console.error('Authentication verification failed:', error);
                 setUser(null);
+                localStorage.removeItem('token');
             } finally {
                 setLoading(false);
             }
@@ -48,7 +57,14 @@ const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
+        <AuthContext.Provider
+            value={{
+                user,
+                login,
+                logout,
+                loading,
+            }}
+        >
             {children}
         </AuthContext.Provider>
     );
@@ -59,4 +75,5 @@ AuthProvider.propTypes = {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
 export default AuthProvider;
