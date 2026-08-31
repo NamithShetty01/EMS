@@ -7,14 +7,14 @@ import RoleBaseRoutes from "./utils/RoleBaseRoutes";
 import AdminSummary from "./components/AdminSummary";
 import DepartmentList from "./components/department/DepartmentList";
 import AddDepartment from "./components/department/AddDepartment";
-import EditDepartment from "./components/department/EditDepartment"; // ✅ fixed typo
+import EditDepartment from "./components/department/EditDepartment";
 import List from "./components/employee/List";
 import Add from "./components/employee/Add";
 import View from "./components/employee/View";
 import Edit from "./components/employee/Edit";
 import AddSalary from "./components/salary/Add";
-import UnauthorizedPage from "./pages/UnauthorizedPage";
-import Summary from "./components/EmployeeDashboard/Summary"; 
+import UnauthorizedPage from "./pages/unauthorizedPage";
+import Summary from "./components/EmployeeDashboard/Summary";
 import LeaveList from "./components/leave/List";
 import AddLeave from "./components/leave/Add";
 import ViewSalary from "./components/salary/View";
@@ -22,15 +22,16 @@ import Setting from "./components/EmployeeDashboard/Setting";
 import Table from "./components/leave/Table";
 import Detail from "./components/leave/Detail";
 import { useAuth } from "./context/authContext";
-import Attendence from "./components/attendence/Attendence";
-import AttendenceReport from "./components/attendence/AttendenceReport";
+import Attendance from "./components/attendance/Attendance";
+import AttendanceReport from "./components/attendance/AttendanceReport";
 
 const App = () => {
   const { loading } = useAuth();
 
   if (loading) {
-    return <div>Loading...</div>; // Show spinner or loading screen
+    return <div>Loading...</div>;
   }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -67,13 +68,11 @@ const App = () => {
           <Route path="employees/salary/:id" element={<ViewSalary />} />
           <Route path="salary/add" element={<AddSalary />} />
           <Route path="leaves" element={<Table />} />
-          <Route path="/admin-dashboard/leaves/:id" element={<Detail />} />
-          <Route path="/admin-dashboard/employees/leaves/:id" element={<LeaveList />} />
-          <Route path="/admin-dashboard/setting" element={<Setting />}/>
-          <Route path="/admin-dashboard/attendence" element={<Attendence />}/>
-          <Route path="/admin-dashboard/attendence-report" element={<AttendenceReport />}/>
-
-
+          <Route path="leaves/:id" element={<Detail />} />
+          <Route path="employees/leaves/:id" element={<LeaveList />} />
+          <Route path="setting" element={<Setting />} />
+          <Route path="attendance" element={<Attendance />} />
+          <Route path="attendance-report" element={<AttendanceReport />} />
         </Route>
 
         {/* Employee dashboard */}
@@ -87,18 +86,14 @@ const App = () => {
             </PrivateRoutes>
           }
         >
-           <Route index element={<Summary />}></Route>
+          <Route index element={<Summary />} />
+          <Route path="profile/:id" element={<View />} />
+          <Route path="leaves/:id" element={<LeaveList />} />
+          <Route path="add-leave" element={<AddLeave />} />
+          <Route path="salary/:id" element={<ViewSalary />} />
+          <Route path="setting" element={<Setting />} />
+        </Route>
 
-           <Route path="/employee-dashboard/profile/:id" element={<View />}></Route>
-           <Route path="/employee-dashboard/leaves/:id" element={<LeaveList />}></Route>
-           <Route path="/employee-dashboard/add-leave" element={<AddLeave />}></Route>
-           <Route path="/employee-dashboard/salary/:id" element={<ViewSalary />}></Route>
-           <Route path="/employee-dashboard/setting" element={<Setting />}></Route>
-
-
-
-
-          </Route>
       </Routes>
     </BrowserRouter>
   );
