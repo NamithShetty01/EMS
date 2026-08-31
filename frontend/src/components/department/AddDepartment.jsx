@@ -22,7 +22,7 @@ const AddDepartment = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/department/add",
+                "https://ems-backend-brown.vercel.app/api/department/add",
                 department,
                 {
                     headers: {
@@ -59,7 +59,7 @@ const AddDepartment = () => {
                     <input
                         type="text"
                         name="dep_name"
-                        value={department.dep_name} 
+                        value={department.dep_name}
                         onChange={handleChange}
                         placeholder="Department Name"
                         className="app-input"
@@ -72,7 +72,7 @@ const AddDepartment = () => {
                     </label>
                     <textarea
                         name="description"
-                        value={department.description}                        
+                        value={department.description}
                         onChange={handleChange}
                         placeholder="Description"
                         className="app-textarea"

@@ -15,10 +15,10 @@ const resolveProfileImageUrl = (profileImage) => {
     }
 
     if (cleanPath.startsWith("uploads/")) {
-        return `http://localhost:5000/${cleanPath}`;
+        return `https://ems-backend-brown.vercel.app/${cleanPath}`;
     }
 
-    return `http://localhost:5000/uploads/${cleanPath}`;
+    return `https://ems-backend-brown.vercel.app/uploads/${cleanPath}`;
 };
 
 const View = () => {
@@ -28,7 +28,7 @@ const View = () => {
     useEffect(() => {
         const fetchEmployee = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/employee/${id}`, {
+                const response = await axios.get(`https://ems-backend-brown.vercel.app/api/employee/${id}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
                 });
 
@@ -53,10 +53,10 @@ const View = () => {
             <p className='text-sm text-slate-500 mb-8'>Comprehensive employee profile and personal information.</p>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
                 <div className="flex justify-center md:justify-start">
-                    <img 
+                    <img
                         src={resolveProfileImageUrl(employee?.userId?.profileImage)}
-                        alt="Profile" 
-                        className='rounded-2xl border border-slate-200 w-72 h-72 object-cover shadow-sm' 
+                        alt="Profile"
+                        className='rounded-2xl border border-slate-200 w-72 h-72 object-cover shadow-sm'
                     />
                 </div>
                 <div>

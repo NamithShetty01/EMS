@@ -10,8 +10,8 @@ const DepartmentList = () => {
     const [depLoading, setDepLoading] = useState(false);
     const [filteredDepartments, setFilteredDepartments] = useState([]);
 
-    
-    const onDepartmentDelete = (_id) => { 
+
+    const onDepartmentDelete = (_id) => {
         const updatedData = departments.filter(dep => dep._id !== _id);
         setDepartments(updatedData);
         setFilteredDepartments(updatedData);
@@ -21,7 +21,7 @@ const DepartmentList = () => {
         const fetchDepartments = async () => {
             setDepLoading(true);
             try {
-                const response = await axios.get("http://localhost:5000/api/department", {
+                const response = await axios.get("https://ems-backend-brown.vercel.app/api/department", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
@@ -30,7 +30,7 @@ const DepartmentList = () => {
                 if (response.data.success) {
                     const data = response.data.departments.map((dep, index) => ({
                         _id: dep._id,
-                        sno: index + 1, 
+                        sno: index + 1,
                         dep_name: dep.dep_name,
                         action: <DepartmentButtons _id={dep._id} onDepartmentDelete={onDepartmentDelete} />,
                     }));
@@ -68,28 +68,28 @@ const DepartmentList = () => {
                         <h3 className="app-page-title">Manage Departments</h3>
                     </div>
                     <div className="app-card p-5">
-                    <div className="flex flex-col md:flex-row justify-between gap-3 md:items-center mt-1">
-                        <input
-                            type="text"
-                            placeholder="Search by department name..."
-                            className="app-input md:max-w-sm"
-                            onChange={filterDepartments}
-                        />
-                        <Link
-                            to="/admin-dashboard/add-department"
-                            className="app-btn-primary text-center"
-                        >
-                            + Add New Department
-                        </Link>
-                    </div>
-                    <div className="mt-5">
-                        <DataTable
-                            columns={columns(onDepartmentDelete)}
-                            data={filteredDepartments}
-                            pagination
-                            highlightOnHover
-                        />
-                    </div>
+                        <div className="flex flex-col md:flex-row justify-between gap-3 md:items-center mt-1">
+                            <input
+                                type="text"
+                                placeholder="Search by department name..."
+                                className="app-input md:max-w-sm"
+                                onChange={filterDepartments}
+                            />
+                            <Link
+                                to="/admin-dashboard/add-department"
+                                className="app-btn-primary text-center"
+                            >
+                                + Add New Department
+                            </Link>
+                        </div>
+                        <div className="mt-5">
+                            <DataTable
+                                columns={columns(onDepartmentDelete)}
+                                data={filteredDepartments}
+                                pagination
+                                highlightOnHover
+                            />
+                        </div>
                     </div>
                 </div>
             )}

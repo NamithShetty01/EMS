@@ -19,7 +19,7 @@ export const columns = (onDepartmentDelete) => [
 ];
 
 
-export const DepartmentButtons = ({ _id, onDepartmentDelete }) => { 
+export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
     const navigate = useNavigate();
 
     if (!_id) {
@@ -36,7 +36,7 @@ export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
         try {
             console.log(`Deleting department with ID: ${_id}`);
 
-            const response = await axios.delete(`http://localhost:5000/api/department/${_id}`, {
+            const response = await axios.delete(`https://ems-backend-brown.vercel.app/api/department/${_id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -56,7 +56,7 @@ export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
 
     return (
         <div className="flex items-center gap-2">
-            <button 
+            <button
                 className="px-3 py-1.5 rounded-md text-xs font-semibold bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors"
                 onClick={() => navigate(`/admin-dashboard/department/${_id}`)}
             >
@@ -71,5 +71,5 @@ export const DepartmentButtons = ({ _id, onDepartmentDelete }) => {
 
 DepartmentButtons.propTypes = {
     _id: PropTypes.string.isRequired,
-    onDepartmentDelete: PropTypes.func.isRequired,  
+    onDepartmentDelete: PropTypes.func.isRequired,
 };

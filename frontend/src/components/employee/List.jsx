@@ -58,10 +58,10 @@ const resolveProfileImageUrl = (profileImage) => {
     const cleanPath = normalizedPath.startsWith("/") ? normalizedPath.slice(1) : normalizedPath;
 
     if (cleanPath.startsWith("uploads/")) {
-        return `http://localhost:5000/${cleanPath}`;
+        return `https://ems-backend-brown.vercel.app/${cleanPath}`;
     }
 
-    return `http://localhost:5000/uploads/${cleanPath}`;
+    return `https://ems-backend-brown.vercel.app/uploads/${cleanPath}`;
 };
 
 const List = () => {
@@ -74,7 +74,7 @@ const List = () => {
         const fetchEmployees = async () => {
             setEmpLoading(true);
             try {
-                const response = await axios.get("http://localhost:5000/api/employee", {
+                const response = await axios.get("https://ems-backend-brown.vercel.app/api/employee", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },

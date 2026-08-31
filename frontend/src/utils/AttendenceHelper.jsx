@@ -37,7 +37,7 @@ export const AttendenceHelper = ({ status, employeeId, statusChanges }) => {
     const markEmployee = async (status, employeeId) => {
         try {
             const response = await axios.put(
-                `http://localhost:5000/api/attendence/update/${employeeId}`,
+                `https://ems-backend-brown.vercel.app/api/attendence/update/${employeeId}`,
                 { status },
                 {
                     headers: {

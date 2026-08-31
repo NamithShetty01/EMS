@@ -8,12 +8,12 @@ const View = () => {
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
     let sno = 1;
-    
+
 
     const fetchSalaries = async () => {
         try {
             setLoading(true);
-            const response = await axios.get(`http://localhost:5000/api/salary/${id}`, {
+            const response = await axios.get(`https://ems-backend-brown.vercel.app/api/salary/${id}`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
 

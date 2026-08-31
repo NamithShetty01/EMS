@@ -16,17 +16,17 @@ const Attendance = () => {
 
     const fetchAttendance = async () => {
         setLoading(true);
-    
+
         const token = localStorage.getItem("token");
         console.log("🔑 Token being sent:", token); // <-- Check what token is stored
-    
+
         try {
-            const response = await axios.get("http://localhost:5000/api/attendence", {
+            const response = await axios.get("https://ems-backend-brown.vercel.app/api/attendence", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-    
+
             if (response.data.success) {
                 const rows = response.data.attendence || response.data.attendance || [];
                 const data = rows.map((att, index) => ({
@@ -42,7 +42,7 @@ const Attendance = () => {
                         />
                     ),
                 }));
-    
+
                 setAttendance(data);
                 setFilteredAttendance(data);
             } else {
@@ -50,7 +50,7 @@ const Attendance = () => {
             }
         } catch (error) {
             console.error("❌ Fetch Error:", error);
-    
+
             if (error.response) {
                 console.error("📡 Server responded with:", error.response.status, error.response.data);
                 alert(
@@ -69,7 +69,7 @@ const Attendance = () => {
             setLoading(false);
         }
     };
-    
+
 
     useEffect(() => {
         fetchAttendance();
@@ -92,38 +92,38 @@ const Attendance = () => {
                 <h3 className="app-page-title">Manage Attendance</h3>
             </div>
             <div className="app-card p-5">
-            <div className="flex flex-col xl:flex-row justify-between xl:items-center mt-1 gap-3">
-                <input
-                    type="text"
-                    placeholder="Search by Employee Name"
-                    className="app-input xl:max-w-sm"
-                    value={searchTerm}
-                    onChange={handleFilter}
-                />
-                <p className='text-sm md:text-base text-slate-700 font-semibold'>
-                    Mark Employees for <span className='font-bold underline'>{new Date().toISOString().split("T")[0]}</span>
-                </p>
-                <Link
-                    to="/admin-dashboard/attendence-report"
-                    className="app-btn-primary text-center"
-                >
-                    Attendance Report
-                </Link>
-            </div>
-            <div className='mt-6'>
-                {loading ? (
-                    <div className="text-slate-600">Loading...</div>
-                ) : (
-                    <DataTable
-                        columns={columns}
-                        data={filteredAttendance.length ? filteredAttendance : attendence}
-                        progressPending={loading}
-                        pagination
-                        highlightOnHover
-                        noDataComponent="No matching records found."
+                <div className="flex flex-col xl:flex-row justify-between xl:items-center mt-1 gap-3">
+                    <input
+                        type="text"
+                        placeholder="Search by Employee Name"
+                        className="app-input xl:max-w-sm"
+                        value={searchTerm}
+                        onChange={handleFilter}
                     />
-                )}
-            </div>
+                    <p className='text-sm md:text-base text-slate-700 font-semibold'>
+                        Mark Employees for <span className='font-bold underline'>{new Date().toISOString().split("T")[0]}</span>
+                    </p>
+                    <Link
+                        to="/admin-dashboard/attendence-report"
+                        className="app-btn-primary text-center"
+                    >
+                        Attendance Report
+                    </Link>
+                </div>
+                <div className='mt-6'>
+                    {loading ? (
+                        <div className="text-slate-600">Loading...</div>
+                    ) : (
+                        <DataTable
+                            columns={columns}
+                            data={filteredAttendance.length ? filteredAttendance : attendence}
+                            progressPending={loading}
+                            pagination
+                            highlightOnHover
+                            noDataComponent="No matching records found."
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );

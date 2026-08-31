@@ -10,7 +10,7 @@ const Table = () => {
 
     const fetchLeaves = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/leave", {
+            const response = await axios.get("https://ems-backend-brown.vercel.app/api/leave", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -72,38 +72,38 @@ const Table = () => {
                         <h3 className="app-page-title">Manage Leave</h3>
                     </div>
                     <div className="app-card p-5">
-                    <div className="flex flex-col lg:flex-row justify-between gap-3 lg:items-center mt-1">
-                        <input
-                            type="text"
-                            placeholder="Search by Emp Id"
-                            className="app-input lg:max-w-sm"
-                            onChange={filterByInput}
-                            value={searchTerm}
-                        />
-                        <div className="flex flex-wrap gap-2">
-                            <button
-                                className="px-3 py-1.5 rounded-md text-xs font-semibold bg-amber-100 text-amber-800 hover:bg-amber-200"
-                                onClick={() => filterByButton("Pending")}
-                            >
-                                Pending
-                            </button>
-                            <button
-                                className="px-3 py-1.5 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800 hover:bg-emerald-200"
-                                onClick={() => filterByButton("Approved")}
-                            >
-                                Approved
-                            </button>
-                            <button
-                                className="px-3 py-1.5 rounded-md text-xs font-semibold bg-rose-100 text-rose-800 hover:bg-rose-200"
-                                onClick={() => filterByButton("Rejected")}
-                            >
-                                Rejected
-                            </button>
+                        <div className="flex flex-col lg:flex-row justify-between gap-3 lg:items-center mt-1">
+                            <input
+                                type="text"
+                                placeholder="Search by Emp Id"
+                                className="app-input lg:max-w-sm"
+                                onChange={filterByInput}
+                                value={searchTerm}
+                            />
+                            <div className="flex flex-wrap gap-2">
+                                <button
+                                    className="px-3 py-1.5 rounded-md text-xs font-semibold bg-amber-100 text-amber-800 hover:bg-amber-200"
+                                    onClick={() => filterByButton("Pending")}
+                                >
+                                    Pending
+                                </button>
+                                <button
+                                    className="px-3 py-1.5 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800 hover:bg-emerald-200"
+                                    onClick={() => filterByButton("Approved")}
+                                >
+                                    Approved
+                                </button>
+                                <button
+                                    className="px-3 py-1.5 rounded-md text-xs font-semibold bg-rose-100 text-rose-800 hover:bg-rose-200"
+                                    onClick={() => filterByButton("Rejected")}
+                                >
+                                    Rejected
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="mt-3">
-                        <DataTable columns={colums} data={filteredLeaves} pagination />
-                    </div>
+                        <div className="mt-3">
+                            <DataTable columns={colums} data={filteredLeaves} pagination />
+                        </div>
                     </div>
                 </div>
             ) : (

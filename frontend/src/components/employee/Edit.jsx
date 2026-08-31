@@ -29,7 +29,7 @@ const Edit = () => {
         const fetchEmployee = async () => {
             console.log("Fetching employee with ID:", id);
             try {
-                const response = await axios.get(`http://localhost:5000/api/employee/${id}`, {
+                const response = await axios.get(`https://ems-backend-brown.vercel.app/api/employee/${id}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
                 });
 
@@ -78,7 +78,7 @@ const Edit = () => {
 
         try {
             const response = await axios.put(
-                `http://localhost:5000/api/employee/${id}`,
+                `https://ems-backend-brown.vercel.app/api/employee/${id}`,
                 updatedEmployee,
                 {
                     headers: {

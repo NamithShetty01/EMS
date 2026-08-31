@@ -17,7 +17,7 @@ const AttendenceReport = () => {
                 query.append("date", dataFilter); // Use "date" instead of "data" for filtering
             }
 
-            const response = await axios.get(`http://localhost:5000/api/attendence/report?${query.toString()}`, {
+            const response = await axios.get(`https://ems-backend-brown.vercel.app/api/attendence/report?${query.toString()}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },

@@ -17,7 +17,7 @@ export const columns = [
     {
         name: "Image",
         cell: (row) => row.profileImage,
-        width:"100px"
+        width: "100px"
     },
     {
         name: "Department",
@@ -41,7 +41,7 @@ export const columns = [
 // Fetch departments
 export const fetchDepartments = async () => {
     try {
-        const response = await axios.get(`http://localhost:5000/api/department`, {
+        const response = await axios.get(`https://ems-backend-brown.vercel.app/api/department`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -58,7 +58,7 @@ export const fetchDepartments = async () => {
 // Fetch employees by department
 export const getEmployees = async (id) => {
     try {
-        const response = await axios.get(`http://localhost:5000/api/employee/department/${id}`, {
+        const response = await axios.get(`https://ems-backend-brown.vercel.app/api/employee/department/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -83,25 +83,25 @@ export const EmployeeButtons = ({ _id }) => {
 
     return (
         <div className="flex flex-wrap items-center gap-2">
-            <button 
+            <button
                 className="px-3 py-1.5 bg-sky-100 text-sky-800 hover:bg-sky-200 rounded-md text-xs font-semibold transition-colors"
                 onClick={() => navigate(`/admin-dashboard/employees/${_id}`)}
             >
                 View
             </button>
-            <button 
+            <button
                 className="px-3 py-1.5 bg-indigo-100 text-indigo-800 hover:bg-indigo-200 rounded-md text-xs font-semibold transition-colors"
                 onClick={() => navigate(`/admin-dashboard/employees/edit/${_id}`)}
             >
                 Edit
             </button>
-            <button 
+            <button
                 className="px-3 py-1.5 bg-amber-100 text-amber-800 hover:bg-amber-200 rounded-md text-xs font-semibold transition-colors"
                 onClick={() => navigate(`/admin-dashboard/employees/salary/${_id}`)}
             >
                 Salary
             </button>
-            <button 
+            <button
                 className="px-3 py-1.5 bg-rose-100 text-rose-800 hover:bg-rose-200 rounded-md text-xs font-semibold transition-colors"
                 onClick={() => navigate(`/admin-dashboard/employees/leaves/${_id}`)}
             >
